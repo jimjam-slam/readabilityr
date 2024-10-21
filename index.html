@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Our big experiment</title>
+    <script src="
+https://cdn.jsdelivr.net/npm/@mozilla/readability@0.5.0/Readability.min.js
+"></script>
+  <script>
+    // when the page is ready...
+    document.addEventListener("DOMContentLoaded", () => {
+
+      // ... clone and parse it
+      /* (we need to clone it because the doc itself is "live", and we
+         risk creating an infinite loop!) */
+
+      // TODO - get a document from another URL and parse THAT
+      const documentClone = document.cloneNode(true);
+      const parsed = new Readability(documentClone).parse()
+
+      console.log("Here's our object:", parsed)
+      
+      // and feed the text rep back into the page so we can see it
+      // (or use `.content` for an HTML string`)
+      const parseTarget = document.querySelector("#parsed")
+      parseTarget.innerHTML = parsed.textContent
+
+    })
+  </script>
+  </head>
+  <body>
+    <h1>Hello!</h1>
+    <p>Big things here!</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc risus sapien, convallis at lectus ac, dictum auctor risus. Etiam sit amet sem enim. Quisque vitae tempus purus, ut molestie purus. Nullam gravida dolor id ex rhoncus sollicitudin. Nulla euismod accumsan ipsum. Curabitur ut condimentum risus, eu dapibus leo. Duis ut ante eu nunc mollis condimentum vel vel tellus. Nam vehicula iaculis eros, ac dignissim risus ultricies et. Mauris bibendum, nulla sed tincidunt consectetur, nibh diam ornare tortor, ut eleifend dolor massa eget diam. Pellentesque eget enim pulvinar, condimentum elit ut, ultrices tortor.</p>
+      
+    <p>Phasellus porttitor condimentum neque ac dignissim. Nullam posuere aliquam lacus et tempus. Pellentesque a tincidunt nibh. Etiam lectus urna, scelerisque id gravida vel, iaculis in mi. Morbi luctus molestie sem id tincidunt. Suspendisse potenti. Phasellus tempus nisl ligula. In sollicitudin egestas arcu ut vulputate. Nunc ullamcorper enim quis mi condimentum, eget semper libero vestibulum.</p>
+      
+    <p>In sit amet lacinia leo, at aliquet leo. Pellentesque lacinia libero libero, at volutpat lorem auctor quis. Phasellus nisi lacus, molestie vitae eleifend ut, malesuada ac ex. Suspendisse sagittis porta arcu, in tincidunt sem tempus cursus. Duis et aliquam nisl. Vivamus in leo ipsum. Mauris cursus, dui a dictum eleifend, ipsum nisi hendrerit nisi, at luctus orci ipsum quis elit. Nam finibus et ligula sed ornare. Cras ac libero eget velit fermentum dictum.</p>
+      
+    <p>Etiam ornare sem non orci finibus, ut interdum est consectetur. Sed libero mi, consequat ut arcu sit amet, sollicitudin blandit nisl. Quisque at est quis erat finibus scelerisque. Integer eleifend venenatis elit eu laoreet. Nunc sed nulla id turpis ullamcorper commodo. Etiam vel sollicitudin augue. Sed posuere faucibus nisi, at ultricies massa lobortis sodales. Aenean vulputate porta justo. Nam iaculis nisi ante, ac congue erat vehicula in.</p>
+
+    <p>In tortor mi, bibendum eget nulla et, viverra interdum sem. Sed euismod urna sit amet mollis lobortis. Integer rhoncus at sem accumsan tempor. Aliquam mollis nulla id leo vulputate, vel sagittis felis eleifend. Praesent non risus suscipit, eleifend leo tincidunt, fringilla odio. Vestibulum eu tellus sed neque iaculis euismod a ac est. Aenean porta odio et nisl tincidunt, a facilisis neque blandit. Mauris tristique nunc at scelerisque elementum. Etiam vestibulum commodo dui sit amet interdum. Ut nibh magna, dapibus ut nunc ut, vestibulum ultricies mi. Aliquam sem sapien, vestibulum sit amet venenatis nec, fermentum non diam. Ut hendrerit est in lorem sodales elementum.</p>
+    <div>
+      <h2>This page's parsed text content:</h2>
+      <hr />
+      <div id="parsed"></div>
+    </div>
+  </body>
+</html>
